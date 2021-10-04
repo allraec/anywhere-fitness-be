@@ -12,11 +12,11 @@ const add = (user) => {
     return db('users as u').insert(user).returning('u.user_id');
 }
 
-const getById = (id) => {
-    return db('users as u').where('u.user_id', id).select('*');
+const getBy = (filter) => {
+    return db('users as u').where(filter).first('*');
 }
 
 module.exports = {
     add,
-    getById
+    getBy
 }

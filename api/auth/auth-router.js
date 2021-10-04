@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const db = require('../users/users-model');
+const { uniqueuser } = require('./auth-middleware');
 
-router.post('/register', async (req, res, next) => {
+router.post('/register', uniqueuser, async (req, res, next) => {
     try{
         const { username, password, role_id } = req.body;
         const newuser = await db.add({
